@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="pixel-window" aria-labelledby="stuff-heading">
+  <div class="window-titlebar">
+    <span class="window-title">DIR://~/stuff/ — {{ collections.stuff.length }} ROM CARTRIDGES &amp; EXPERIMENTS</span>
+    <a href="/terminal/?cmd=cd%20~/stuff%20%26%26%20ls%20-la" style="color: inherit; font-size: 0.8rem;">[&gt;_ ls -la ~/stuff]</a>
+  </div>
+  <div class="window-body">
+    <h1 id="stuff-heading">{{ title }}</h1>
+    {{ content | safe }}
+
+    <ul class="card-grid" role="list" style="margin-block-start: 1.5rem;">
+      {% for item in collections.stuff %}
+        <li class="retro-card cartridge-card">
+          <div>
+            <div class="card-meta">
+              <span class="cartridge-badge">{{ item.data.category or "EXPERIMENT" }}</span>
+              <span>ROM // {{ item.data.year or "2026" }}</span>
+            </div>
+            <h2 class="card-title" style="border: 0; margin-block: 0 0.4rem; padding: 0;">
+              <a href="{{ item.url }}">{{ item.data.title }}</a>
+            </h2>
+            <p class="card-desc">{{ item.data.summary }}</p>
+            {% if item.data.stack %}
+              <ul class="tag-list" role="list" style="margin-block-end: 1rem;">
+                {% for tech in item.data.stack %}
+                  <li class="pixel-tag">{{ tech }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem;">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+              <a href="{{ item.url }}" class="pixel-btn">Specs →</a>
+              {% if item.data.externalUrl %}
+                <a href="{{ item.data.externalUrl }}" class="pixel-btn" rel="noopener">🌐 Launch</a>
+              {% endif %}
+              {% if item.data.repoUrl %}
+                <a href="{{ item.data.repoUrl }}" class="pixel-btn" rel="noopener">⌨ Repo</a>
+              {% endif %}
+            </div>
+            <a href="/terminal/?cmd=cat%20~/stuff/{{ item.fileSlug }}.md" class="pixel-btn" aria-label="cat {{ item.fileSlug }}.md in terminal">&gt;_ cat</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

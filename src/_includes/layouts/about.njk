@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="pixel-window" aria-labelledby="about-heading">
+  <div class="window-titlebar">
+    <span class="window-title">FILE://~/about.md — PLAYER 1 PROFILE ({{ site.author.name }})</span>
+    <a href="/terminal/?cmd=cat%20~/about.md" style="color: inherit; font-size: 0.8rem;">[&gt;_ cat ~/about.md]</a>
+  </div>
+  <div class="window-body">
+    <div class="rpg-sheet">
+      <div class="avatar-card">
+        <img
+          src="/assets/images/avatar-8bit.png"
+          alt="8-bit pixel portrait of {{ site.author.name }}"
+          class="avatar-svg"
+          width="264"
+          height="264"
+          fetchpriority="high"
+        >
+        <div><strong>{{ site.author.name }}</strong> ({{ site.author.pronouns }})</div>
+        <div class="text-muted" style="font-size: 0.8rem;">Born {{ site.author.born }} · {{ site.author.location }}</div>
+        <div style="margin-block-start: 0.75rem; display: flex; flex-direction: column; gap: 0.35rem;">
+          {% for link in site.author.links %}
+            <a href="{{ link.url }}" class="pixel-btn" rel="noopener">{{ link.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div>
+        <h1 id="about-heading">{{ title }}</h1>
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+</article>

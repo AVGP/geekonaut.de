@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <script>
+  {
+    const colorScheme = localStorage.getItem("color-scheme");
+    if (colorScheme === "light" || colorScheme === "dark") {
+      document.querySelector('meta[name="color-scheme"]').content = colorScheme;
+      document.documentElement.setAttribute("data-theme", colorScheme);
+    }
+  }
+  </script>
+  <title>{% if title %}{{ title }} | {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
+  <meta name="description" content="{{ summary or description or site.subtitle }}">
+  <meta name="author" content="{{ site.author.name }} (@{{ site.author.handle }})">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect width='16' height='16' fill='%230b0f14'/><rect x='2' y='2' width='12' height='12' fill='%2338f29b'/><rect x='4' y='4' width='8' height='8' fill='%230b0f14'/><rect x='5' y='6' width='2' height='2' fill='%2338f29b'/><rect x='9' y='6' width='2' height='2' fill='%2338f29b'/><rect x='6' y='10' width='4' height='1' fill='%23ff6b9d'/></svg>">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link visually-hidden">Skip to main content</a>
+
+  <!-- Top 8-Bit System HUD Bar -->
+  <div class="hud-bar" role="region" aria-label="System status and display controls">
+    <div class="container hud-inner">
+      <div class="hud-status">
+        <span class="status-led" aria-hidden="true"></span>
+        <span><strong>GEEKONAUT-OS v4.2</strong> // 64KB OK // 0-BLOAT MODE</span>
+      </div>
+      <div class="hud-controls">
+        <label class="pixel-btn theme-switch-label" for="theme-toggle-input">
+          <input type="checkbox" id="theme-toggle-input" class="theme-switch-input" aria-label="Toggle dark and light color scheme">
+          <span id="theme-toggle-text" aria-hidden="true">◐ THEME</span>
+        </label>
+        <button type="button" id="crt-toggle-btn" class="pixel-btn" aria-pressed="false" hidden>▤ CRT:OFF</button>
+        <button type="button" id="sfx-toggle-btn" class="pixel-btn" aria-pressed="false" hidden>♪ SFX:OFF</button>
+        <a href="/terminal/" class="pixel-btn">&gt;_ CLI</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Retro 8-Bit Site Header -->
+  <header class="site-header container">
+    <div class="brand-banner">
+      <div class="brand-identity">
+        <a href="/" aria-label="{{ site.title }} Home">
+          <svg class="pixel-logo" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="2" y="1" width="12" height="2" fill="currentColor"/>
+            <rect x="1" y="3" width="2" height="10" fill="currentColor"/>
+            <rect x="13" y="3" width="2" height="10" fill="currentColor"/>
+            <rect x="2" y="13" width="12" height="2" fill="currentColor"/>
+            <rect x="3" y="3" width="10" height="8" fill="#101614"/>
+            <!-- 8-bit friendly visor eyes -->
+            <rect x="5" y="5" width="2" height="2" fill="#38f29b"/>
+            <rect x="9" y="5" width="2" height="2" fill="#38f29b"/>
+            <!-- 8-bit smile -->
+            <rect x="5" y="8" width="1" height="1" fill="#ffd166"/>
+            <rect x="6" y="9" width="4" height="1" fill="#ffd166"/>
+            <rect x="10" y="8" width="1" height="1" fill="#ffd166"/>
+            <!-- Cartridge slots -->
+            <rect x="4" y="12" width="3" height="1" fill="#ff6b9d"/>
+            <rect x="9" y="12" width="3" height="1" fill="#4cc9f0"/>
+          </svg>
+        </a>
+        <div>
+          <a href="/" class="brand-title">{{ site.title }}</a>
+          <span class="brand-tagline">{{ site.tagline }} // {{ site.author.name }} (@{{ site.author.handle }})</span>
+        </div>
+      </div>
+      <div class="text-muted" style="font-size: 0.8rem;">
+        <div>LOC: ZURICH_CH [47.37°N, 8.54°E]</div>
+        <div>NET: GEEK OPTIMIZED ⚡</div>
+      </div>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="nav-list" role="list">
+        {% for item in site.nav %}
+          {% set isCurrent = (page.url == item.url) or (item.url != "/" and page.url and page.url.startsWith(item.url)) %}
+          <li>
+            <a href="{{ item.url }}" class="nav-link" {% if isCurrent %}aria-current="page"{% endif %}>
+              <span aria-hidden="true">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+              <span class="nav-key" aria-hidden="true">[F{{ item.key }}]</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="site-main container" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  <!-- Retro 8-Bit Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>{{ site.title }} // {{ site.author.name }}</strong>
+        <p class="mt-0 mb-0">
+          {{ site.subtitle }}. Built with 11ty, tea and lots of fun.
+        </p>
+      </div>
+      <div>
+        <strong>NETWORK NODES (LINKS)</strong>
+        <ul class="footer-links" role="list">
+          {% for link in site.author.links %}
+            <li><a href="{{ link.url }}" rel="noopener">{{ link.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <!--div>
+        <strong>EASTER EGGS &amp; CLI</strong>
+        <p class="mt-0 mb-0">
+          Browse this site as a UNIX filesystem in <a href="/terminal/">~/terminal</a> or try the Konami Code: <code>↑ ↑ ↓ ↓ ← → ← → B A</code>
+        </p>
+      </div-->
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

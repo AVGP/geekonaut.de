@@ -1,0 +1,4 @@
+{
+  "layout": "layouts/stuff-item.njk",
+  "tags": ["stuff"]
+}

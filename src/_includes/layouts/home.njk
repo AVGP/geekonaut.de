@@ -1,0 +1,134 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="pixel-window" aria-labelledby="welcome-heading">
+  <div class="window-titlebar">
+    <span class="window-title">SYS://HOME/GEEKONAUT/WELCOME.EXE — CHARACTER SHEET</span>
+    <span class="window-controls" aria-hidden="true">
+      <span class="win-dot">_</span>
+      <span class="win-dot">□</span>
+      <span class="win-dot">×</span>
+    </span>
+  </div>
+  <div class="window-body">
+    <div class="rpg-sheet">
+      <div class="avatar-card">
+        <img
+          src="/assets/images/avatar-8bit.png"
+          alt="8-bit pixel portrait of {{ site.author.name }}"
+          class="avatar-svg"
+          width="264"
+          height="264"
+          fetchpriority="high"
+        >
+        <div><strong>{{ site.author.name }}</strong></div>
+        <div class="text-muted" style="font-size: 0.78rem;">@{{ site.author.handle }} // {{ site.author.alias }}</div>
+        <div style="margin-block-start: 0.5rem;">
+          <a href="/terminal/?cmd=neofetch" class="pixel-btn">&gt;_ neofetch</a>
+        </div>
+      </div>
+
+      <div>
+        <h1 id="welcome-heading">{{ title }}</h1>
+        {{ content | safe }}
+
+        <ul class="stat-list" role="list">
+          {% for stat in site.author.stats %}
+            <li class="stat-item">
+              <span class="stat-label">{{ stat.label }}</span>
+              <span class="stat-value">{{ stat.value }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Blog Posts Section -->
+<section class="pixel-window" aria-labelledby="recent-blog-heading">
+  <div class="window-titlebar">
+    <span class="window-title">DIR://~/blog/ — LATEST TRANSMISSIONS &amp; LOGS</span>
+    <a href="/blog/" style="color: inherit; font-size: 0.8rem;">[VIEW ALL {{ collections.blog.length }} FILES →]</a>
+  </div>
+  <div class="window-body">
+    <h2 id="recent-blog-heading" class="mt-0">Recent Blog Posts</h2>
+    <ul class="card-grid" role="list">
+      {% for post in collections.blog | limit(3) %}
+        <li class="retro-card">
+          <div>
+            <div class="card-meta">
+              <time datetime="{{ post.date | isoDate }}">📅 {{ post.date | readableDate }}</time>
+              <span>💾 {{ post.templateContent | byteSize }} · {{ post.templateContent | readingTime }}</span>
+            </div>
+            <h3 class="card-title">
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+            </h3>
+            <p class="card-desc">{{ post.data.summary }}</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem;">
+            <ul class="tag-list" role="list">
+              {% for tag in post.data.tags | excludeTag("blog") %}
+                <li class="pixel-tag">#{{ tag }}</li>
+              {% endfor %}
+            </ul>
+            <a href="/terminal/?cmd=cat%20~/blog/{{ post.fileSlug }}.md" class="pixel-btn" aria-label="Read {{ post.data.title }} in terminal">&gt;_ cat</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- Featured Stuff Section -->
+<section class="pixel-window" aria-labelledby="featured-stuff-heading">
+  <div class="window-titlebar">
+    <span class="window-title">DIR://~/stuff/ — CARTRIDGES, EXPERIMENTS &amp; WEIRD WEB</span>
+    <a href="/stuff/" style="color: inherit; font-size: 0.8rem;">[BROWSE ALL {{ collections.stuff.length }} ITEMS →]</a>
+  </div>
+  <div class="window-body">
+    <h2 id="featured-stuff-heading" class="mt-0">Featured Stuff &amp; Projects</h2>
+    <ul class="card-grid" role="list">
+      {% for item in collections.stuff | limit(4) %}
+        <li class="retro-card cartridge-card">
+          <div>
+            <div class="card-meta">
+              <span class="cartridge-badge">{{ item.data.category or "PROJECT" }}</span>
+              <span>ROM // {{ item.data.year or "2026" }}</span>
+            </div>
+            <h3 class="card-title">
+              <a href="{{ item.url }}">{{ item.data.title }}</a>
+            </h3>
+            <p class="card-desc">{{ item.data.summary }}</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem;">
+            <a href="{{ item.url }}" class="pixel-btn">Inspect ROM →</a>
+            <a href="/terminal/?cmd=cat%20~/stuff/{{ item.fileSlug }}.md" class="pixel-btn" aria-label="Inspect {{ item.data.title }} in terminal">&gt;_ cat</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- Interactive Terminal Callout -->
+<section class="pixel-window" aria-labelledby="cli-promo-heading">
+  <div class="window-titlebar">
+    <span class="window-title">BIN://USR/BIN/GSH — INTERACTIVE FILESYSTEM TERMINAL</span>
+    <span class="window-controls" aria-hidden="true"><span class="win-dot">&gt;_</span></span>
+  </div>
+  <div class="window-body" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+    <div>
+      <h2 id="cli-promo-heading" class="mt-0" style="border: 0; margin-block-end: 0.25rem;">Prefer browsing via CLI?</h2>
+      <p class="mb-0">
+        Every blog post, project cartridge, and bio on this site is mounted inside an interactive 8-bit UNIX shell with touch buttons for mobile.
+      </p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <a href="/terminal/" class="pixel-btn">&gt;_ Launch ~/terminal</a>
+      <a href="/terminal/?cmd=tree" class="pixel-btn">&gt;_ Run tree</a>
+      <a href="/terminal/?cmd=googlebot" class="pixel-btn">&gt;_ Run googlebot</a>
+    </div>
+  </div>
+</section>

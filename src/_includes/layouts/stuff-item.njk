@@ -1,0 +1,52 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="pixel-window" aria-labelledby="stuff-item-title">
+  <div class="window-titlebar">
+    <span class="window-title">ROM://~/stuff/{{ page.fileSlug }}.md — CARTRIDGE INSPECTOR</span>
+    <span class="window-controls" aria-hidden="true">
+      <span class="win-dot">_</span>
+      <span class="win-dot">□</span>
+      <span class="win-dot">×</span>
+    </span>
+  </div>
+  <div class="window-body">
+    <div class="doc-meta-bar">
+      <div>
+        <span class="cartridge-badge">{{ category or "PROJECT" }}</span>
+        <span aria-hidden="true"> | </span>
+        <strong>YEAR:</strong> {{ year or "2026" }}
+        <span aria-hidden="true"> | </span>
+        <strong>SIZE:</strong> {{ content | byteSize }}
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+        {% if externalUrl %}
+          <a href="{{ externalUrl }}" class="pixel-btn" rel="noopener">🌐 Live Site</a>
+        {% endif %}
+        {% if repoUrl %}
+          <a href="{{ repoUrl }}" class="pixel-btn" rel="noopener">⌨ Source Code</a>
+        {% endif %}
+        <a href="/terminal/?cmd=cat%20~/stuff/{{ page.fileSlug }}.md" class="pixel-btn">&gt;_ View in CLI</a>
+      </div>
+    </div>
+
+    <h1 id="stuff-item-title">{{ title }}</h1>
+
+    {% if stack %}
+      <ul class="tag-list" role="list" style="margin-block-end: 1.25rem;">
+        {% for tech in stack %}
+          <li class="pixel-tag">{{ tech }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="stuff-content">
+      {{ content | safe }}
+    </div>
+
+    <div style="margin-block-start: 2rem; padding-block-start: 1rem; border-block-start: 2px dashed var(--border-subtle);">
+      <a href="/stuff/" class="pixel-btn">← Back to ~/stuff Cartridge Rack</a>
+    </div>
+  </div>
+</article>

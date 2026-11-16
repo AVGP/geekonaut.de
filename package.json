@@ -1,0 +1,23 @@
+{
+  "name": "geekonaut",
+  "version": "1.0.0",
+  "description": "Geekonaut - Bits, Bytes & Geekspace. Friendly 8-bit hacker website built with 11ty.",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "serve": "eleventy --serve"
+  },
+  "keywords": [
+    "geekonaut",
+    "11ty",
+    "8-bit",
+    "retro",
+    "hacker"
+  ],
+  "author": "Martin Splitt (@g33konaut / AVGP)",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

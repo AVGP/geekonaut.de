@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="pixel-window" aria-labelledby="blog-heading">
+  <div class="window-titlebar">
+    <span class="window-title">DIR://~/blog/ — {{ collections.blog.length }} FILES ({{ collections.blog | length }} TRANSMISSIONS)</span>
+    <a href="/terminal/?cmd=cd%20~/blog%20%26%26%20ls%20-la" style="color: inherit; font-size: 0.8rem;">[&gt;_ ls -la ~/blog]</a>
+  </div>
+  <div class="window-body">
+    <h1 id="blog-heading">{{ title }}</h1>
+    {{ content | safe }}
+
+    <ul class="card-grid" role="list" style="margin-block-start: 1.5rem;">
+      {% for post in collections.blog %}
+        <li class="retro-card">
+          <div>
+            <div class="card-meta">
+              <time datetime="{{ post.date | isoDate }}">📅 {{ post.date | readableDate }}</time>
+              <span>💾 {{ post.templateContent | byteSize }} · ⏱ {{ post.templateContent | readingTime }}</span>
+            </div>
+            <h2 class="card-title" style="border: 0; margin-block: 0 0.4rem; padding: 0;">
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+            </h2>
+            <p class="card-desc">{{ post.data.summary }}</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem;">
+            <ul class="tag-list" role="list">
+              {% for tag in post.data.tags | excludeTag("blog") %}
+                <li class="pixel-tag">#{{ tag }}</li>
+              {% endfor %}
+            </ul>
+            <div style="display: flex; gap: 0.35rem;">
+              <a href="{{ post.url }}" class="pixel-btn">Read →</a>
+              <a href="/terminal/?cmd=cat%20~/blog/{{ post.fileSlug }}.md" class="pixel-btn" aria-label="cat {{ post.fileSlug }}.md in terminal">&gt;_ cat</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+{
+  "title": "GEEKONAUT",
+  "tagline": "Bits, Bytes & Geekspace",
+  "subtitle": "Friendly internet fairy, code magician & computer whisperer",
+  "url": "https://geekonaut.de",
+  "language": "en",
+  "author": {
+    "name": "Martin Splitt",
+    "handle": "splitti.online",
+    "pronouns": "he/him",
+    "role": "Developer Relations Engineer (Search & Web Ecosystem)",
+    "company": "Google",
+    "location": "Zurich, Switzerland",
+    "born": 1989,
+    "origin": "Northern Germany → Eastern Germany → Switzerland",
+    "email": "martin@geekonaut.de",
+    "bio": "Software developer, open-source tinkerer, scuba diving instructor, and analog photography nerd.",
+    "stats": [
+      { "label": "CLASS", "value": "Code Magician" },
+      { "label": "GUILD", "value": "Google Search Relations" },
+      { "label": "BASE", "value": "Zurich, CH (UTC+1)" },
+      { "label": "MANA", "value": "Tea & Club-Mate" }
+    ],
+    "links": [
+      { "name": "GitHub (@AVGP)", "url": "https://github.com/AVGP", "cmd": "open https://github.com/AVGP" },
+      { "name": "Bluesky", "url": "https://bsky.app/profile/splitti.online", "cmd": "open https://bsky.app/profile/splitti.online" },
+      { "name": "splitti.online", "url": "https://splitti.online", "cmd": "open https://splitti.online" },
+      { "name": "That's a Website", "url": "https://thatsaweb.site", "cmd": "open https://thatsaweb.site" },
+      { "name": "Ars Photographica", "url": "https://arsphotographica.ch", "cmd": "open https://arsphotographica.ch" },
+      { "name": "Diving For Fun", "url": "https://divingfor.fun", "cmd": "open https://divingfor.fun" }
+    ]
+  },
+  "nav": [
+    { "label": "~/home", "url": "/", "key": "1", "icon": "⌂" },
+    { "label": "~/blog", "url": "/blog/", "key": "2", "icon": "✎" },
+    { "label": "~/stuff", "url": "/stuff/", "key": "3", "icon": "❖" },
+    { "label": "~/about", "url": "/about/", "key": "4", "icon": "☺" },
+    { "label": "~/terminal", "url": "/terminal/", "key": "5", "icon": ">_" }
+  ]
+}

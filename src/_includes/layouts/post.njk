@@ -1,0 +1,52 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="pixel-window" aria-labelledby="post-title">
+  <div class="window-titlebar">
+    <span class="window-title">FILE://~/blog/{{ page.fileSlug }}.md</span>
+    <span class="window-controls" aria-hidden="true">
+      <span class="win-dot">_</span>
+      <span class="win-dot">□</span>
+      <span class="win-dot">×</span>
+    </span>
+  </div>
+  <div class="window-body">
+    <div class="doc-meta-bar">
+      <div>
+        <strong>DATE:</strong> <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+        <span aria-hidden="true"> | </span>
+        <strong>SIZE:</strong> {{ content | byteSize }} ({{ content | readingTime }})
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;">
+        {% for tag in tags | excludeTag("blog") %}
+          <span class="pixel-tag">#{{ tag }}</span>
+        {% endfor %}
+        <a href="/terminal/?cmd=cat%20~/blog/{{ page.fileSlug }}.md" class="pixel-btn">&gt;_ View in CLI</a>
+      </div>
+    </div>
+
+    <h1 id="post-title">{{ title }}</h1>
+
+    <div class="post-content">
+      {{ content | safe }}
+    </div>
+
+    {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+    {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+    <nav class="post-nav" aria-label="Blog post navigation">
+      <div>
+        {% if previousPost %}
+          <span class="text-muted" style="font-size: 0.78rem; display: block;">← OLDER TRANSMISSION</span>
+          <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
+        {% endif %}
+      </div>
+      <div style="text-align: end;">
+        {% if nextPost %}
+          <span class="text-muted" style="font-size: 0.78rem; display: block;">NEWER TRANSMISSION →</span>
+          <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+        {% endif %}
+      </div>
+    </nav>
+  </div>
+</article>
