@@ -4,7 +4,7 @@ title: "Hello World! Welcome to Geekspace."
 summary: "Personal digital sandbox, blog, and 8-bit hacker terminal of Martin Splitt (@splitti.online)."
 ---
 
-Welcome to **geekonaut.de** — the personal corner of the web belonging to **Martin Splitt** (`@g33konaut` / `AVGP`).
+Welcome to **geekonaut.de** — the personal corner of the web belonging to **Martin Splitt** (`@splitti.online`).
 
 I'm a friendly internet fairy, code magician, and Developer Relations Engineer at Google in Zurich, where I spend my days bridging web developers, search engines, and the open web platform.
 
