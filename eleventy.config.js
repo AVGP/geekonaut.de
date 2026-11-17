@@ -1,5 +1,9 @@
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
+	eleventyConfig.addPlugin(syntaxHighlight);
 
   // Date formatting filter (YYYY-MM-DD for 8-bit terminal clarity)
   eleventyConfig.addFilter("readableDate", (dateObj) => {
@@ -88,6 +92,25 @@ module.exports = function (eleventyConfig) {
       .getFilteredByGlob("src/stuff/*.md")
       .sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
   });
+
+  eleventyConfig.addPlugin(feedPlugin, {
+		type: "rss", // or "rss", "json"
+		outputPath: "/feed.xml",
+		collection: {
+			name: "blog", // iterate over which collection
+			limit: 10,     // 0 means no limit
+			sort: "descending",  // or "descending", "ascending"
+		},
+		metadata: {
+			language: "en",
+			title: "Geekonaut",
+			subtitle: "Technical exploration, thoughts and articles by Martin Splitt",
+			base: "https://geekonaut.de",
+			author: {
+				name: "Martin Splitt"
+			}
+		}
+	});
 
   return {
     dir: {

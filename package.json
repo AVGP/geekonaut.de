@@ -5,7 +5,8 @@
   "scripts": {
     "build": "eleventy",
     "start": "eleventy --serve",
-    "serve": "eleventy --serve"
+    "serve": "eleventy --serve",
+    "telnet": "go run ./telnet"
   },
   "keywords": [
     "geekonaut",
@@ -19,5 +20,9 @@
   "type": "commonjs",
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1"
   }
 }
