@@ -72,11 +72,11 @@ But that doesn't work in our browser!
 
 Let's take a look at the network tab for `http://thirdparty.com`:
 
-![The network request was successful](http://50linesofco.de/images/post-images/cors/network-before-cors.png)
+![The network request was successful](/assets/images/post-images/cors/network-before-cors.png)
 
 The request was successful, but the result was not available. The reason can be found in the JavaScript console:
 
-![The console shows that a missing CORS header causes the problem](http://50linesofco.de/images/post-images/cors/js-errors-without-cors.png)
+![The console shows that a missing CORS header causes the problem](/assets/images/post-images/cors/js-errors-without-cors.png)
 
 Aha! We are missing the `Access-Control-Allow-Origin` header. But why do we need it and what is it good for?
 
@@ -119,7 +119,7 @@ app.get('/public', function(req, res) {
 
 Here we are setting the `Access-Control-Allow-Origin` header to `*` which means: Any host is allowed to access this URL and the response in the browser:
 
-![The response is available once we set the CORS header](http://50linesofco.de/images/post-images/cors/basic-cors.png)
+![The response is available once we set the CORS header](/assets/images/post-images/cors/basic-cors.png)
 
 ## Non-simple requests and preflights
 
@@ -142,7 +142,7 @@ fetch('http://good.com:3000/public', {
 But this breaks thirdparty.com again!
 This time the network panel shows us the reason:
 
-![The request has been preflighted with an OPTIONS request](http://50linesofco.de/images/post-images/cors/cors-preflight.png)
+![The request has been preflighted with an OPTIONS request](/assets/images/post-images/cors/cors-preflight.png)
 
 Any request that is using a method that isn't `GET` or `POST` or uses a content type that isn't
 * `text/plain`

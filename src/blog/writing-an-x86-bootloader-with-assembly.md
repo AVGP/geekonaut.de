@@ -140,7 +140,7 @@ qemu-system-x86_64 boot.bin
 ```
 
 Running this command produces something relatively unspectacular:
-![](../images/post-images/qemu-first-boot.png)
+![](/assets/images/post-images/qemu-first-boot.png)
 
 The fact that QEmu stops looking for bootable devices means that our bootloader worked - but it doesn't do anything yet!
 
@@ -188,7 +188,7 @@ Now we're loading the necessary value into the `ax` register, call interrupt 0x1
 
 When we run `as` and `ld` to get our updated bootloader, QEmu shows us this:
 
-![](../images/post-images/qemu-single-character.png)
+![](/assets/images/post-images/qemu-single-character.png)
 
 We can even see that the cursor blinks at the next position, so this function should be easy to use with longer messages, right?
 
@@ -285,7 +285,7 @@ msg: .asciz "Hello world!"
 
 Let's look at this new code in QEmu:
 
-![](../images/post-images/qemu-final-bootloader.png)
+![](/assets/images/post-images/qemu-final-bootloader.png)
 
 🎉 Yay! 🎉
 
