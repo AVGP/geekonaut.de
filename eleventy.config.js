@@ -84,7 +84,7 @@ module.exports = function (eleventyConfig) {
 
   // Collections
   eleventyConfig.addCollection("blog", (collectionApi) => {
-    return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => b.date - a.date);
+    return collectionApi.getFilteredByGlob("src/blog/**/*.md").sort((a, b) => b.date - a.date);
   });
 
   eleventyConfig.addCollection("stuff", (collectionApi) => {
@@ -110,6 +110,12 @@ module.exports = function (eleventyConfig) {
 				name: "Martin Splitt"
 			}
 		}
+	});
+
+  // polling because...ugh
+  eleventyConfig.setChokidarConfig({
+		usePolling: true,
+		interval: 500,
 	});
 
   return {
