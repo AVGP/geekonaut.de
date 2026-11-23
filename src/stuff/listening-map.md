@@ -1,9 +1,9 @@
 ---
-title: "Listening Maps"
+title: "listenmap.geekonaut.de"
 category: "Web app"
 year: 2026
 order: 2
-externalUrl: "https://listeningmap.geekonaut.de"
+externalUrl: "https://listenmap.geekonaut.de"
 repoUrl: "https://github.com/AVGP/teal-heatmap"
 stack:
   - "golang"
@@ -20,4 +20,4 @@ It will send you a download link via email and that'll give you a ZIP fill full 
 
 The heatmap is ordered by year and you can see the top artists, top albums and top songs for each year. You can also click on each day and see the listening history for that day.
 
-[Try it out here](https://listeningmap.geekonaut.de)
+[Try it out here](https://listenmap.geekonaut.de)
